@@ -1,11 +1,13 @@
 int x = 50;
 int y = 50;
-int birdYVelocity = -100;
-int gravity = 2;
-int pipex = 500;
-int pipex2 = 300; 
-int upperPipeHeight = (int) random(100, 400);
-int lowerY =  0 + upperPipeHeight + 100;
+int birdYVelocity = -30;
+int gravity = 3;
+int pipex = 600;
+int pipex2 = 200; 
+int upperPipeHeight = (int) random(100, 450);
+int upperPipeHeight2 = (int) random(100,450);
+int lowerY =  0 + upperPipeHeight + 150;
+int boost = -5;
 boolean state = true;
 boolean endgame = false;
 void draw() {
@@ -18,16 +20,17 @@ void draw() {
   fill(0, 255, 0);
   rect(pipex, 0, 60, upperPipeHeight);
   fill(0, 255, 0);
-  rect(pipex2, lowerY, 60, upperPipeHeight);
+  rect(pipex2, 350, 60, upperPipeHeight2);
   if (pipex==0) {
-    teleportPipes();
+    teleportPipe();
     upperPipeHeight = (int) random(100, 400);
   }
-  else if(pipex2==0){
+  else if(pipex2==-60){
+    teleportPipe2();
     pipex2=500;
-     upperPipeHeight = (int) random(100, 400);
+     upperPipeHeight2 = (int) random(100, 400);
   }
-  else if(x==0){
+  else if(x==-60){
     endgame();
   }
   else if(x==500){
@@ -51,23 +54,33 @@ void endgame(){
   text("Game Over",250, 250);
   stop();
   
-
 }
-  void mousePressed()
-{
+void mousePressed(){
   gravity =0;
-  y = y+ birdYVelocity;
-  gravity = 5;
+   y = y + birdYVelocity;
+  if(birdYVelocity<70){
+    birdYVelocity = birdYVelocity + boost;
+ 
+ }
+else if(birdYVelocity==-70){
+    birdYVelocity = -5;
+   
+  }
+  
+  gravity = 3;
 }
-void teleportPipes()
+void teleportPipe()
 {
-  state = false;
+ // state = false;
   pipex = 500;
-  state = true;
+ // state = true;
+}
+void teleportPipe2(){
+  pipex2 = 500;
 }
 void setup()
 {
   
-  teleportPipes();
+  teleportPipe();
   size(500, 500);
 }
