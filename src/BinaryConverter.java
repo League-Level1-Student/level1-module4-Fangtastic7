@@ -47,21 +47,26 @@ public class BinaryConverter implements ActionListener, MouseListener {
               JOptionPane.showMessageDialog(null, "Binary can only contain 1s or 0s, silly!!!");
               return "-";
          }
-         try {
+          try {
         	 String value = "1";
         	 int total = 1;
+        	 int sum =0;
               input.length();
               
-              for(int i=0;i<9; i++) {
-            	 for(int i=0; i<)
-            	  if(value.equals(input.charAt(i))) {
-            		 
-            		  total = total *2;            	  }
-            	  
+              for(int i=0;i<8; i++) {
+            	 
+            	 
+            		 if(i==0) {
+            			 total =1;
+            		 }
+            		 else {
+            			 total = total *2;            	  
+            		 }
+            		 if(value.equals(input.charAt(i))) {
+            	  sum = sum +total;
+            	  System.out.println(sum);
               }
-              
-              
-              return total;
+              }
          } catch (Exception e) {
               JOptionPane.showMessageDialog(null, "Enter a binary, silly!!!");
               return "-";
